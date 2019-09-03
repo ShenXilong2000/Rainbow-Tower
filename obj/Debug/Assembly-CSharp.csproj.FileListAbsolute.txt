@@ -1,0 +1,2 @@
+E:\unity\Rainbow Tower\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+E:\unity\Rainbow Tower\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
