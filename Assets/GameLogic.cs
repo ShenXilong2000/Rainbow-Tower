@@ -12,7 +12,7 @@ enum MoveDir
 
 public class GameLogic : MonoBehaviour
 {
-
+    public float replay_up = 3f;
     public Transform topPlate;
     Transform movingPlate;
 
@@ -343,29 +343,39 @@ public class GameLogic : MonoBehaviour
             transform.position = pos;
             transform.localScale = local;
             transform.eulerAngles = euler;
+
             GetComponent<MeshRenderer>().material.color = color;
         }
-
     }
 
     void gameOver()
     {
-        return;
+        ifGameOver = false;
+
+        topPlate.position = new Vector3(0, topPlate.position.y + replay_up, 0);
+        topPlate.localScale = new Vector3(5f, 0.5f, 5f);
+        topPlate.gameObject.GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+        movingPlate.gameObject.AddComponent<Rigidbody>();
+        movingPlate = null;
+        GameObject.Find("Score").GetComponent<Text>().text = "0";
+
+        rgb[0] = 1;
+        rgb[1] = 1;
+        rgb[2] = 1;
+        rgbIndex[0] = 0;
+        rgbIndex[1] = 1;
+        rgbIndex[2] = 2;
+        
         //Transform camera = GameObject.Find("basePlate").transform;
-        //while(GameObject.Find("basePlate").transform)
-        //{
-        //    GameObject.Find("basePlate").transform.gameObject.AddComponent<Rigidbody>();
-        //}
         //GameObject.Find("Plate").transform.gameObject.AddComponent<Rigidbody>();
         //movingPlate = null;
         //topPlate.position = new Vector3(0, 0, 0);
         //topPlate.localScale = new Vector3(5f, 0.5f, 5f);
-        //ifGameOver = false;
+
 
 
         //Transform replayCude = Instantiate(movingPlate);
         //replayCude.localScale = new Vector3(2f, 0.1f, 1f);
-        //Transform camera = GameObject.Find("Main Camera").transform;
         //Vector3 local = new Vector3();
         //local = camera.position;
         //replayCude.localEulerAngles = camera.localEulerAngles;
@@ -373,7 +383,7 @@ public class GameLogic : MonoBehaviour
         //Color c = new Color(rgb[0], rgb[1], rgb[2]);
 
 
-        //Transformation(replayCude.position,replayCude.localScale,replayCude.localEulerAngles,c);
+        //Transformation(replayCude.position, replayCude.localScale, replayCude.localEulerAngles, c);
 
     }
 }
